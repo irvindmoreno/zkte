@@ -1,0 +1,2 @@
+2) Error 02: Usted no ah creado un proyecto, cree el proyecto primero por favor
+	Ubicacion: view_create.sh en funcion validarSiEsPosibleEjecutarEsteComando

@@ -1,0 +1,3 @@
+[submodule "componentes"]
+	path = componentes
+	url = git@github.com:irvindmoreno/componentes.git

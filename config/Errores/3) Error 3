@@ -1,0 +1,3 @@
+Error 03: No existe una vista con este nombre
+	Ubicación: view_use
+	funcion: usarVista

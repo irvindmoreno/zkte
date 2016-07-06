@@ -1,0 +1,2 @@
+gulp cp
+gulp concatenarComponente

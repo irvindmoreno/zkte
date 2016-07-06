@@ -1,0 +1,32 @@
+{
+  "name": "zkte-front",
+  "version": "0.1.0",
+  "description": "Framework para front end",
+  "main": "gulpfile.js",
+  "scripts": {
+    "build": "gulp",
+    "start": "gulp watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/irvindmoreno/zkte-front.git"
+  },
+  "author": "Irvin Daniel Moreno Chávez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/irvindmoreno/zkte-front/issues"
+  },
+  "homepage": "https://github.com/irvindmoreno/zkte-front#readme",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.9.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^4.1.0",
+    "gulp-jade": "^1.1.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-stylus": "^2.5.0",
+    "rupture": "^0.6.1"
+  }
+}
