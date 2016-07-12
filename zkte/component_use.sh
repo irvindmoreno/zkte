@@ -22,6 +22,7 @@ escribirLasCabecerasDeHtml()
 		font-size: 16px;
 	}
 </style>
+<script src='../../../../node_modules/jquery-validation/dist/jquery.validate.js'></script>
 <script src='./$componenteTipo.js'></script>">> "$(pwd)/public/componentes/$componenteTipo/$componenteNombre/estrcutura.html"
 	#echo "Se ah escrito la estructura"				
 	#cat < "$(pwd)/public/componentes/$componenteTipo/$componenteNombre/$componenteTipo.html"  >> "$(pwd)/public/componentes/$componenteTipo/$componenteNombre/$componenteNombre.html"

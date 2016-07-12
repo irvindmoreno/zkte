@@ -16,7 +16,7 @@ cadena='
 	alias comp.import="'$rutazkte'/zkte/component_import.sh"
 	alias comp.compile="'$rutazkte'/zkte/component_compile.sh"
 	alias rut.zkte.front="cd '$rutazkte'"
-	alias subl.zkte.front.jquery="subl '$HOME'/Carrera/FrontEnd/zkte-front"
+	alias subl.zkte.front.jquery="subl '$HOME'/Carrera/FrontEnd/zkte"
 #FIN Del Zkte-front'
 echo "$cadena" >> ~/.zshrc
 npm install
