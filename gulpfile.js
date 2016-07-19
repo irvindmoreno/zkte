@@ -1,6 +1,6 @@
 /******no tocar linea 1,2 y 3********/
-var proyecto='modal';
-var vista='gallitoCuentaImg';
+var proyecto='slider';
+var vista='zkte';
 var tipo='componente';
 /*librerias requeridas para correr gulp*/
 
@@ -20,8 +20,8 @@ if(tipo=="proyecto")
 }
 else if(tipo=="componente")
 {
-    var rutaOrigen=['componentes/'+proyecto+'/'+vista];
-    var rutaDestinoVista="public/componentes/"+proyecto+"/"+vista;
+    var rutaOrigen=['componentes/preprocesados/'+proyecto+'/'+vista];
+    var rutaDestinoVista="componentes/public/"+proyecto+"/"+vista;
 }
 
 gulp.task("css-reload",function(){
@@ -71,18 +71,18 @@ gulp.task("jade",function(){
             .pipe(rename({extname:'.html'}))
             .pipe(gulp.dest(rutaDestinoVista))
             .pipe(connect.reload());
-
+    /*
     if(tipo=="componente")
     {
         console.log("concatenando")
         setTimeout(function(){
-            gulp.src(['./public/componentes/'+proyecto+'/'+vista+'/estrcutura.html', './public/componentes/'+proyecto+'/'+vista+'/'+proyecto+'.html'])
+            gulp.src(['./componentes/public/'+proyecto+'/'+vista+'/estrcutura.html', './componentes/public/'+proyecto+'/'+vista+'/'+proyecto+'.html'])
             .pipe(concat('resultado.html'))
-            .pipe(gulp.dest("public/componentes/"+proyecto+"/"+vista+"/"))
+            .pipe(gulp.dest("componentes/public/"+proyecto+"/"+vista+"/"))
             .pipe(connect.reload())
         }, 2000);
         
-    }
+    }*/
 })
 gulp.task('connect', function() {
     connect.server({
@@ -106,9 +106,9 @@ function compile(watch) {
 }
 gulp.task('concatenarComponente', function () {
     
-        gulp.src(['./public/componentes/'+proyecto+'/'+vista+'/estrcutura.html', './public/componentes/'+proyecto+'/'+vista+'/'+proyecto+'.html'])
+        gulp.src(['./componentes/public/'+proyecto+'/'+vista+'/estrcutura.html', './componentes/public/'+proyecto+'/'+vista+'/'+proyecto+'.html'])
         .pipe(concat('resultado.html'))
-        .pipe(gulp.dest("public/componentes/"+proyecto+"/"+vista+"/"))
+        .pipe(gulp.dest("componentes/public/"+proyecto+"/"+vista+"/"))
 
 });
 
@@ -119,98 +119,68 @@ gulp.task("watch",function(){
 })
 
 gulp.task("default",["css-reload","js-reload","jade-reload","watch","connect"])
-gulp.task("componente",["css","js","jade"])
-/* rutas de donde leer y donde escribir archivos para la pp*/
-
-/* Tareas para ejecutar*/
-/*
-function TareaJade(rutaOrigen,rutaDestinoVista) {
-    
-    function compilarVistas()
-    {
-        console.log("vistas html");
-        gulp.src(rutaOrigen)
-            .pipe(jade({
-                pretty: true
-            }))
-            .pipe(rename({extname:'.html'}))
-            .pipe(gulp.dest(rutaDestinoVista))
+gulp.task("componente",["css","js","jade","watch","connect"])
+gulp.task("subirComponente",function()
+{
+    /*aqui pondras los componentes que subiras a gh pages*/
+    var componentes={
+        header:["gallito","todobusco"],
+        footer:["gallito","todobusco"]
     }
-    gulp.watch(rutaOrigen, compilarVistas);
-}
-function TareaCss(rutaOrigen,rutaDestinoVista) {
-    function compilarVistaCss()
+    for (key in componentes)
     {
-        console.log("vistas css");
-         gulp.src(rutaOrigen)
+        var componente=key;
+        console.log(componente);
+        for(i in componentes[key])
+        {
+            var nombreComponente=componentes[key][i];
+            var rutaOrigen=['componentes/preprocesados/'+componente+'/'+nombreComponente];
+            var rutaDestinoVista="componentes/public/"+componente+"/"+nombreComponente;
+
+                gulp.src(rutaOrigen+"/*.styl")
+                    .pipe(stylus({use:[rupture()]}))
+                    .pipe(gulp.dest(rutaDestinoVista));
+
+         
+           
+                gulp.src(rutaOrigen+"/*.js")         
+                    .pipe(babel({
+                        presets: ['es2015']
+                    }))
+                    .pipe(gulp.dest(rutaDestinoVista));
+          
+          
+                 gulp.src(rutaOrigen+"/*.jade")
+                        .pipe(jade({
+                            pretty: true
+                        }))
+                        .pipe(rename({extname:'.html'}))
+                        .pipe(gulp.dest(rutaDestinoVista));
+        }
+        
+        //document.write("<br>"+key+" - "+value);
+    }
+    
+})
+gulp.task("repoComponentes",function()
+{
+    var rutaOrigen=['componentes/zkte/preprocesados/'];
+    var rutaDestinoVista="componentes/zkte/public";
+    gulp.src(rutaOrigen+"/css/*.styl")
         .pipe(stylus({use:[rupture()]}))
         .pipe(gulp.dest(rutaDestinoVista))
-    }
-    compilarVistaCss();    
-}
-function TareaBabel(rutaOrigen,rutaDestinoVista) {
-    function compilarVistaJs()
-    {
-        gulp.src(rutaOrigen)         
-        .pipe(babel())
+        .pipe(connect.reload());
+    gulp.src(rutaOrigen+"/js/**/*.js")         
+        .pipe(babel({
+            presets: ['es2015']
+        }))
         .pipe(gulp.dest(rutaDestinoVista))
-    }  
-    compilarVistaJs();
-}
-
-function TareaJadeComponente(rutaOrigen,rutaDestinoVista) {
-    
-    function compilarVistas()
-    {  
-
-        console.log("vistas html");
-        gulp.src(rutaOrigen)
+        .pipe(connect.reload());
+    gulp.src(rutaOrigen+"/*.jade")
             .pipe(jade({
                 pretty: true
             }))
             .pipe(rename({extname:'.html'}))
             .pipe(gulp.dest(rutaDestinoVista))
-        
-    }
-    compilarVistas();
-
-}
-*/
-
-/*
-gulp.task('default', function () {
-
-    var rutaOrigen=['proyecto/'+proyecto+'/'+vista];
-    var rutaDestinoVista="public/proyecto/"+proyecto+"/"+vista;
-    var rutaDestinoComponentes="public/proyecto/"+proyecto;
-    
-    new TareaJade(rutaOrigen+'/*.jade',rutaDestinoVista);
-    new TareaBabel(rutaOrigen+'/*.js',rutaDestinoVista);
-    new TareaCss(rutaOrigen+'/*.styl',rutaDestinoVista);
-    
-
-});
-gulp.task('cp', function () {
-   
-    var rutaOrigen=['componentes/'+proyecto+'/'+vista];
-    var rutaDestinoVista="public/componentes/"+proyecto+"/"+vista;
- 
-    new TareaJadeComponente(rutaOrigen+'/*.jade',rutaDestinoVista);
-    new TareaBabel(rutaOrigen+'/*.js',rutaDestinoVista);
-    new TareaCss(rutaOrigen+'/*.styl',rutaDestinoVista);
-
-});
-
-
-
-
-
-gulp.task('concatenarComponente', function () {
-    
-        gulp.src(['./public/componentes/'+proyecto+'/'+vista+'/estrcutura.html', './public/componentes/'+proyecto+'/'+vista+'/'+proyecto+'.html'])
-        .pipe(concat('resultado.html'))
-        .pipe(gulp.dest("public/componentes/"+proyecto+"/"+vista+"/"))
-
-});
-
-gulp.task()*/
+            .pipe(connect.reload());
+})

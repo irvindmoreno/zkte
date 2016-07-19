@@ -23,39 +23,30 @@ escribirLasCabecerasDeHtml()
 	}
 </style>
 <script src='../../../../node_modules/jquery-validation/dist/jquery.validate.js'></script>
-<script src='./$componenteTipo.js'></script>">> "$(pwd)/public/componentes/$componenteTipo/$componenteNombre/estrcutura.html"
+<script src='./$componenteTipo.js'></script>">> "$(pwd)/componentes/public/$componenteTipo/$componenteNombre/estrcutura.html"
 	#echo "Se ah escrito la estructura"				
 	#cat < "$(pwd)/public/componentes/$componenteTipo/$componenteNombre/$componenteTipo.html"  >> "$(pwd)/public/componentes/$componenteTipo/$componenteNombre/$componenteNombre.html"
 }
 creamosLosArchivosEnPublic()
 {
 	
-	if [ -d "$(pwd)/public/componentes/$componenteTipo/$componenteNombre" ];
+	if [ -d "$(pwd)/componentes/public/$componenteTipo/$componenteNombre" ];
 		then
 			echo "Se ah cambiado al componente $componenteTipo => $componenteNombre con éxito"			
-			gulp componente
-			gulp concatenarComponente
 			abrirNavegador
-			gulp
+			gulp componente
+			#gulp concatenarComponente
+			#abrirNavegador
+			#gulp
 	else
-		mkdir "$(pwd)/public/componentes/$componenteTipo"
-		mkdir "$(pwd)/public/componentes/$componenteTipo/$componenteNombre"
-		cd "$(pwd)/public/componentes/$componenteTipo/$componenteNombre"
-		touch estrcutura.html
-		cd ..
-		cd ..
-		cd ..
-		cd ..
-		if [ -f "$(pwd)/public/componentes/$componenteTipo/$componenteNombre/estrcutura.html" ];
-			then
-				escribirLasCabecerasDeHtml
-				gulp componente
-				gulp concatenarComponente
-				abrirNavegador
-				gulp
-		else
-			echo "!Hubo un error que aún no solucionamos lo sentimos"
-		fi
+		#creamos las carpetas en donde estaran los archivos transpilados
+		#escribirLasCabecerasDeHtml
+		abrirNavegador
+		gulp componente
+		#gulp concatenarComponente
+		#abrirNavegador
+		#gulp
+		
 		
 		echo "se han creado las carpetas"
 		#echo "!Importante: ahora debes ejecutar el comando gulp cp en otra terminal y puedes seguir trabajando"
@@ -70,13 +61,13 @@ abrirNavegador()
 { 
 	
 	echo "Se abrira un navegador en donde pordra visualizar sus cambios"	
-	google-chrome "http://localhost:8080/public/componentes/$componenteTipo/$componenteNombre/resultado.html"
+	google-chrome "http://localhost:8080/componentes/public/$componenteTipo/$componenteNombre/$componenteTipo.html"
 }
 usar()
 {
 	componenteTipo=$1
 	componenteNombre=$2	
-	rutaCompenenteAUsar="$(pwd)/componentes/$componenteTipo/$componenteNombre"
+	rutaCompenenteAUsar="$(pwd)/componentes/preprocesados/$componenteTipo/$componenteNombre"
 	#verificamos si existe dicho componente ingresado
 	if [ -d $rutaCompenenteAUsar ];
 		then		
