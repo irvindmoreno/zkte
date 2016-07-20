@@ -1,5 +1,4 @@
 rutazkte="$(pwd)"
-git submodule add --force git@github.com:irvindmoreno/componentes.git
 cadena='
 #INICIO Del Zkte-front
 
@@ -20,3 +19,6 @@ cadena='
 #FIN Del Zkte-front'
 echo "$cadena" >> ~/.zshrc
 npm install
+cd componentes
+git fetch origin gh-pages:gh-pages
+git checkout gh-pages
