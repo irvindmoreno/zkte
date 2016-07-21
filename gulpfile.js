@@ -71,18 +71,6 @@ gulp.task("jade",function(){
             .pipe(rename({extname:'.html'}))
             .pipe(gulp.dest(rutaDestinoVista))
             .pipe(connect.reload());
-    /*
-    if(tipo=="componente")
-    {
-        console.log("concatenando")
-        setTimeout(function(){
-            gulp.src(['./componentes/public/'+proyecto+'/'+vista+'/estrcutura.html', './componentes/public/'+proyecto+'/'+vista+'/'+proyecto+'.html'])
-            .pipe(concat('resultado.html'))
-            .pipe(gulp.dest("componentes/public/"+proyecto+"/"+vista+"/"))
-            .pipe(connect.reload())
-        }, 2000);
-        
-    }*/
 })
 gulp.task('connect', function() {
     connect.server({
@@ -124,8 +112,24 @@ gulp.task("subirComponente",function()
 {
     /*aqui pondras los componentes que subiras a gh pages*/
     var componentes={
-        header:["gallito","todobusco"],
-        footer:["gallito","todobusco"]
+        header:["gallito","todobusco","asep","clickslogic","ePass","zkte"],
+        footer:["gallito","todobusco","asep"],
+        banner:["todobusco"],
+        button:["asepAzul"],
+        contadores:["gallito"],
+        formulario:["ePass","reclamacionesEpass"],
+        gota:["ePass"],
+        grafico:["cliclogix"],
+        icons:["gallito","todobusco"],
+        input:["asep","fileAsep","textAsep"],
+        inscripcion:["asep"],
+        menu:["clickslogic"],
+        navegacion:["asep"],
+        paquete:["ePass","ePassMas"],
+        posit:["ePass","scorecard"],
+        post:["gallito","gallitoB"],
+        publicidad:["ePass","epassFlecha"],
+        redesSociales:["asep"]
     }
     for (key in componentes)
     {
