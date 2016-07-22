@@ -1,7 +1,7 @@
 /******no tocar linea 1,2 y 3********/
-var proyecto='slider';
-var vista='zkte';
-var tipo='componente';
+var proyecto='cesar';
+var vista='inicio';
+var tipo='proyecto';
 /*librerias requeridas para correr gulp*/
 
 var gulp = require('gulp'),
@@ -113,6 +113,7 @@ gulp.task("subirComponente",function()
     /*aqui pondras los componentes que subiras a gh pages*/
     var componentes={
         header:["gallito","todobusco","asep","clickslogic","ePass","zkte"],
+        slider:["gallito","todobusco","gallitoB","dgalli","ePass","touch","boostrap"],
         footer:["gallito","todobusco","asep"],
         banner:["todobusco"],
         button:["asepAzul"],
@@ -129,7 +130,11 @@ gulp.task("subirComponente",function()
         posit:["ePass","scorecard"],
         post:["gallito","gallitoB"],
         publicidad:["ePass","epassFlecha"],
-        redesSociales:["asep"]
+        redesSociales:["asep"],
+        select:["asep"],
+        tabs:["asep"],
+        titulo:["asep"],
+        vinietas:["asep","clickslogic"]
     }
     for (key in componentes)
     {

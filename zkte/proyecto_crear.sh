@@ -76,7 +76,7 @@ crearLayout()
 }
 crearProyecto()
 {
-	
+	mkdir proyecto
 	if [ -d $rutaProyecto ];
 		then	
 			echo "Ya Existe un proyecto con este nombre"			

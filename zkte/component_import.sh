@@ -21,7 +21,7 @@ verificarExistenciaDeComponenteIngresado()
 {
 	componenteTipo=$1
 	componenteNombre=$2
-	rutaComponenteIngresado="$(pwd)/componentes/$componenteTipo/$componenteNombre"
+	rutaComponenteIngresado="$(pwd)/componentes/preprocesados/$componenteTipo/$componenteNombre"
 	read proyectoNombre < "$(pwd)/config/Proyecto/Nombre.conf"
 	read vistaUse < "$(pwd)/config/Vistas/Use.conf"
 
